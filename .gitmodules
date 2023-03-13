@@ -1,0 +1,4 @@
+[submodule "02-Codebase"]
+path = 02-Codebase
+url = https://github.com/nstankov-bg/docker-dotnet-api.git
+branch = main
