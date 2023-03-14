@@ -48,7 +48,7 @@ PROD: (close your eyes and imagine a load-balancer)
 
 - [x] Implement SEMVER
 - [x] Implement Github Actions for basic CI
-
+- [ ] Implement CIS Benchmark and Hardening for security.
 ## Where you'll need context:
 
 - [ ] AWS Account
