@@ -17,7 +17,7 @@ dism /online /Enable-Feature /FeatureName:NetFx4 /All
 $iisFeatures = @(
     "IIS-WebServerRole", "IIS-WebServer", "IIS-CommonHttpFeatures", "IIS-Security", "IIS-RequestFiltering", "IIS-StaticContent",
     "IIS-DefaultDocument", "IIS-DirectoryBrowsing", "IIS-HttpErrors", "IIS-ApplicationDevelopment", "IIS-WebSockets", "IIS-ApplicationInit",
-    "IIS-NetFxExtensibility45", "IIS-ISAPIExtensions", "IIS-ISAPIFilter", "IIS-ASP", "IIS-ASPNET45", "IIS-ServerSideIncludes", "IIS-HealthAndDiagnostics",
+    "IIS-ISAPIExtensions", "IIS-ISAPIFilter", "IIS-ServerSideIncludes", "IIS-HealthAndDiagnostics",
     "IIS-HttpLogging", "IIS-Performance", "IIS-HttpCompressionStatic", "IIS-WebServerManagementTools", "IIS-ManagementConsole", "IIS-ManagementService"
 )
 
