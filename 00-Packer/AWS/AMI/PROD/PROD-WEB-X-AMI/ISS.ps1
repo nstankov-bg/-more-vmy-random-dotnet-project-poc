@@ -32,8 +32,8 @@ Enable-WindowsFeatureIfNotEnabled -FeatureName "IIS-ASPNET45"
 Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# Install WebDeploy
-choco install webdeploy -y
+# # Install WebDeploy # Part of demo pre octopus
+# choco install webdeploy -y
 
 # Install .NET Hosting Bundle
 $dotNetHostingUrl = "https://download.visualstudio.microsoft.com/download/pr/321a2352-a7aa-492a-bd0d-491a963de7cc/6d17be7b07b8bc22db898db0ff37a5cc/dotnet-hosting-6.0.14-win.exe"
