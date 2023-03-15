@@ -1,8 +1,12 @@
-## Motivation:
+# Infrastructure Suite Demo with Built-In Instrumentation
 
-- A demonstration of a in-the-middle infrastructure suite, with instrumentation built around operational convenience & reproducibility 🚀
+This repository demonstrates an infrastructure suite with a focus on operational convenience and reproducibility.
 
-## Given more time:
+## Motivation
+
+- A demonstration of an in-the-middle infrastructure suite, with instrumentation built around operational convenience & reproducibility 🚀
+
+## Given more time
 
 - Register nodes into target groups & ASG(s) 📝
 - Register load balancer(s) to point to target group(s) 📝
@@ -12,7 +16,7 @@
 
 ![Diagram](docs/images/diagram.png)
 
-## Demo:
+## Demo
 
 DEV:
 
@@ -23,11 +27,11 @@ PROD: (close your eyes and imagine a load-balancer)
 - http://18.198.105.88/api/weather
 - http://3.76.20.32/api/weather
 
-## 📜 SRC Description:
+## 📜 SRC Description
 
 - A random-off-the shelf stateless app ( because stateless means happy Ops ) app, that simulates a weather API at `/api/weather` ☁️
 
-## 🚀 Features:
+## 🚀 Features
 
 - 🚀 Uses Packer to create "Golden AMI(s)"
 - 📦 Uses Terraform to provision
@@ -37,18 +41,19 @@ PROD: (close your eyes and imagine a load-balancer)
 - 🎁 Uses Github Submodules to wrap infra around project
 - 📜 Uses Make for basic scripting convenience
 
-## 🧪 BETA Features:
+## 🧪 BETA Features
 
 - [ ] Uses Github Actions to push a "trigger" for fully automated releases
 - [ ] Add S3 Bucket for Octopus Deploy to store artifacts
 - [ ] Add S3 Bucket for Terraform to store state & lock via DynamoDB
-- [ ] Experiment with ASG(s) & Target Groups, as tennants to Octopus Deploy
+- [ ] Experiment with ASG(s) & Target Groups, as tenants to Octopus Deploy
 
-## 🛠️ TODO:
+## 🛠️ TODO
 
 - [x] Implement SEMVER
 - [x] Implement Github Actions for basic CI
 - [ ] Implement CIS Benchmark and Hardening for security.
+
 ## Where you'll need context:
 
 - [ ] AWS Account
