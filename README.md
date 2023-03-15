@@ -1,3 +1,5 @@
+## Note: Improvements are added in a [PR-1](https://github.com/nstankov-bg/-more-vmy-random-dotnet-project-poc/pull/1), but outside of the original time-limits.
+
 ## Motivation:
 
 - A demonstration of a in-the-middle infrastructure suite, with instrumentation built around operational convenience & reproducibility 🚀
