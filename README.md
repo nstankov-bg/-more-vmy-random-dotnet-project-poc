@@ -1,5 +1,10 @@
 # Infrastructure Suite Demo with Built-In Instrumentation
 
+## Note: Improvements are added in a [PR-1](https://github.com/nstankov-bg/-more-vmy-random-dotnet-project-poc/pull/1), but outside of the original time-limits.
+
+## Motivation:
+
+
 This repository demonstrates an infrastructure suite with a focus on operational convenience and reproducibility.
 
 ## Motivation
