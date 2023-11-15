@@ -12,6 +12,22 @@ variable "region" {
   default = "eu-central-1"
 }
 
+variable "instance_type" {
+  type    = string
+  default = "t3.xlarge"
+}
+
+variable "winrm_username" {
+  type    = string
+  default = "Administrator"
+}
+
+variable "winrm_password" {
+  type      = string
+  default   = null
+  sensitive = true
+}
+
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
@@ -19,8 +35,8 @@ locals {
 source "amazon-ebs" "firstrun-windows" {
   ami_name      = "packer-windows-demo-${local.timestamp} DEV"
   communicator  = "winrm"
-  instance_type = "t3.xlarge"
-  region        = "${var.region}"
+  instance_type = var.instance_type
+  region        = var.region
   source_ami_filter {
     filters = {
       name                = "Windows_Server-2022-English-Full-Base*"
@@ -31,8 +47,8 @@ source "amazon-ebs" "firstrun-windows" {
     owners      = ["amazon"]
   }
   user_data_file = "./bootstrap_win.txt"
-  winrm_password = "SuperS3cr3t!!!!"
-  winrm_username = "Administrator"
+  winrm_password = var.winrm_password
+  winrm_username = var.winrm_username
 }
 
 build {
@@ -42,9 +58,12 @@ build {
   provisioner "powershell" {
     script = "./ISS.ps1"
   }
-  // provisioner "powershell" {
-  //   script = "./Octopus.ps1"
-  // }
+  provisioner "powershell" {
+    script = "./Octopus.ps1"
+  }
+  provisioner "powershell" {
+    script = "./Hardening.ps1"
+  }
 
   provisioner "windows-restart" {}
 }

@@ -5,12 +5,20 @@ Invoke-WebRequest $octopusUrl -OutFile $octopusInstaller
 Start-Process msiexec.exe -ArgumentList "/i $octopusInstaller /quiet" -Wait
 
 # Install Octopus Deploy Tentacle
-"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config"
-"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" new-certificate --instance "Tentacle" --if-blank
-"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" configure --instance "Tentacle" --reset-trust
-"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" configure --instance "Tentacle" --app "C:\Octopus\Applications" --port "10933" --noListen "False"
+$tentaclePath = "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe"
+$instanceName = "Tentacle"
+$configPath = "C:\Octopus\Tentacle.config"
+$appPath = "C:\Octopus\Applications"
+$port = "10933"
 
-##Leaked trust and rotated##
-"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" configure --instance "Tentacle" --trust "5CA0B7EDF9EF2FE8A8DE95C8B95DAD4B3DA19C88"
-"netsh" advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=10933
-"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" service --instance "Tentacle" --install --stop --start
+& $tentaclePath create-instance --instance $instanceName --config $configPath
+& $tentaclePath new-certificate --instance $instanceName --if-blank
+& $tentaclePath configure --instance $instanceName --reset-trust
+& $tentaclePath configure --instance $instanceName --app $appPath --port $port --noListen "False"
+
+# Store the trusted thumbprint in an environment variable or a secrets manager
+$thumbprint = Get-Content 'C:\path\to\thumbprint.txt'
+
+& $tentaclePath configure --instance $instanceName --trust $thumbprint
+netsh advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=$port
+& $tentaclePath service --instance $instanceName --install --stop --start
